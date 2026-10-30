@@ -1,0 +1,39 @@
+# 仙台市 青葉区八幡2丁目 のごみ収集日
+#
+# rules の type:
+#   weekly      : 毎週きまった曜日      → weekdays: [tue, fri]
+#   nth_weekday : 第◯◯曜日             → weekday: wed, nth: [2, 4]
+# 曜日は mon tue wed thu fri sat sun（または 月 火 水 木 金 土 日）で書きます。
+#
+# exceptions: 収集がない日（年末年始など）
+#   1日だけ   → date: 2027-05-03
+#   期間      → from: 2026-12-29, to: 2027-01-03
+
+area: 青葉区八幡2丁目
+deadline: "8:30"
+
+rules:
+  - name: 家庭ごみ
+    type: weekly
+    weekdays: [tue, fri]
+
+  - name: プラスチック資源
+    type: weekly
+    weekdays: [thu]
+
+  - name: 缶・びん・ペットボトル等
+    type: weekly
+    weekdays: [sat]
+
+  - name: 紙類
+    type: nth_weekday
+    weekday: wed
+    nth: [2, 4]
+
+exceptions:
+  - from: 2026-12-29
+    to: 2027-01-03
+    note: 年末年始
+  - from: 2027-12-29
+    to: 2028-01-03
+    note: 年末年始
