@@ -1,0 +1,20 @@
+services:
+  gomi-bot:
+    build: .
+    image: gomi-bot:latest
+    container_name: gomi-bot
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      - gomi-data:/data                        # SQLite file survives restarts
+      - ./schedule.yml:/app/schedule.yml:ro    # edit schedule without rebuilding
+    networks:
+      - deployment_default
+    # No "ports:" — cloudflared reaches it at http://gomi-bot:8000 on the shared network.
+
+volumes:
+  gomi-data:
+
+networks:
+  deployment_default:
+    external: true
